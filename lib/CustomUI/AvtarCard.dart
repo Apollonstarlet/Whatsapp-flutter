@@ -1,10 +1,10 @@
-import 'package:chatapp/Model/ChatModel.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AvatarCard extends StatelessWidget {
-  const AvatarCard({Key key, this.chatModel}) : super(key: key);
-  final ChatModel chatModel;
+  const AvatarCard({Key? key, this.chatModel}) : super(key: key);
+  final ChatModel? chatModel;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class AvatarCard extends StatelessWidget {
             height: 2,
           ),
           Text(
-            chatModel.name,
+            chatModel!.name,
             style: TextStyle(
               fontSize: 12,
             ),

@@ -1,12 +1,12 @@
-import 'package:chatapp/CustomUI/CustomCard.dart';
-import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Screens/SelectContact.dart';
+import 'package:whatsapp/CustomUI/CustomCard.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
+import 'package:whatsapp/Screens/SelectContact.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
-  ChatPage({Key key, this.chatmodels, this.sourchat}) : super(key: key);
-  final List<ChatModel> chatmodels;
-  final ChatModel sourchat;
+  ChatPage({Key? key, this.chatmodels, this.sourchat}) : super(key: key);
+  final List<ChatModel>? chatmodels;
+  final ChatModel? sourchat;
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -27,9 +27,9 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
       body: ListView.builder(
-        itemCount: widget.chatmodels.length,
+        itemCount: widget.chatmodels?.length,
         itemBuilder: (contex, index) => CustomCard(
-          chatModel: widget.chatmodels[index],
+          chatModel: widget.chatmodels?[index],
           sourchat: widget.sourchat,
         ),
       ),

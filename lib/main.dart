@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
-import 'package:chatapp/Screens/CameraScreen.dart';
-import 'package:chatapp/Screens/Homescreen.dart';
-import 'package:chatapp/Screens/LoginScreen.dart';
+import 'package:whatsapp/Screens/CameraScreen.dart';
+import 'package:whatsapp/Screens/Homescreen.dart';
+import 'package:whatsapp/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: "OpenSans",
           primaryColor: Color(0xFF075E54),
-          accentColor: Color(0xFF128C7E)),
+          hintColor: Color(0xFF128C7E)),
       home: LoginScreen(),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ButtonCard extends StatelessWidget {
-  const ButtonCard({Key key, this.name, this.icon}) : super(key: key);
-  final String name;
-  final IconData icon;
+  const ButtonCard({Key? key, this.name, this.icon}) : super(key: key);
+  final String? name;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ButtonCard extends StatelessWidget {
         backgroundColor: Color(0xFF25D366),
       ),
       title: Text(
-        name,
+        name!,
         style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.bold,

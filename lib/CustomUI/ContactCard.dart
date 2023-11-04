@@ -1,10 +1,10 @@
-import 'package:chatapp/Model/ChatModel.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ContactCard extends StatelessWidget {
-  const ContactCard({Key key, this.contact}) : super(key: key);
-  final ChatModel contact;
+  const ContactCard({Key? key, this.contact}) : super(key: key);
+  final ChatModel? contact;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ContactCard extends StatelessWidget {
               ),
               backgroundColor: Colors.blueGrey[200],
             ),
-            contact.select
+            contact!.select
                 ? Positioned(
                     bottom: 4,
                     right: 5,
@@ -43,14 +43,14 @@ class ContactCard extends StatelessWidget {
         ),
       ),
       title: Text(
-        contact.name,
+        contact!.name,
         style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: Text(
-        contact.status,
+        contact!.status,
         style: TextStyle(
           fontSize: 13,
         ),

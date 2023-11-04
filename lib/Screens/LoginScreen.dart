@@ -1,17 +1,17 @@
-import 'package:chatapp/CustomUI/ButtonCard.dart';
-import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Screens/Homescreen.dart';
+import 'package:whatsapp/CustomUI/ButtonCard.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
+import 'package:whatsapp/Screens/Homescreen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  ChatModel sourceChat;
+  ChatModel? sourceChat;
   List<ChatModel> chatmodels = [
     ChatModel(
       name: "Dev Stack",
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       currentMessage: "Hi Everyone",
       time: "4:00",
       icon: "person.svg",
-      id: 1,
+      id: 1, status: '',
     ),
     ChatModel(
       name: "Kishor",
@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       currentMessage: "Hi Kishor",
       time: "13:00",
       icon: "person.svg",
-      id: 2,
+      id: 2, status: '',
     ),
 
     ChatModel(
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       currentMessage: "Hi Dev Stack",
       time: "8:00",
       icon: "person.svg",
-      id: 3,
+      id: 3, status: '',
     ),
 
     ChatModel(
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       currentMessage: "Hi Dev Stack",
       time: "2:00",
       icon: "person.svg",
-      id: 4,
+      id: 4, status: '',
     ),
 
     // ChatModel(

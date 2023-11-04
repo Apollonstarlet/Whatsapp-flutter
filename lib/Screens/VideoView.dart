@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoViewPage extends StatefulWidget {
-  const VideoViewPage({Key key, this.path}) : super(key: key);
-  final String path;
+  const VideoViewPage({Key? key, this.path}) : super(key: key);
+  final String? path;
 
   @override
   _VideoViewPageState createState() => _VideoViewPageState();
 }
 
 class _VideoViewPageState extends State<VideoViewPage> {
-  VideoPlayerController _controller;
+  VideoPlayerController? _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.file(File(widget.path))
+    _controller = VideoPlayerController.file(File(widget.path!))
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -65,10 +65,10 @@ class _VideoViewPageState extends State<VideoViewPage> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 150,
-              child: _controller.value.initialized
+              child: _controller!.value.isInitialized
                   ? AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: VideoPlayer(_controller),
+                      aspectRatio: _controller!.value.aspectRatio,
+                      child: VideoPlayer(_controller!),
                     )
                   : Container(),
             ),
@@ -114,16 +114,16 @@ class _VideoViewPageState extends State<VideoViewPage> {
               child: InkWell(
                 onTap: () {
                   setState(() {
-                    _controller.value.isPlaying
-                        ? _controller.pause()
-                        : _controller.play();
+                    _controller!.value.isPlaying
+                        ? _controller!.pause()
+                        : _controller!.play();
                   });
                 },
                 child: CircleAvatar(
                   radius: 33,
                   backgroundColor: Colors.black38,
                   child: Icon(
-                    _controller.value.isPlaying
+                    _controller!.value.isPlaying
                         ? Icons.pause
                         : Icons.play_arrow,
                     color: Colors.white,

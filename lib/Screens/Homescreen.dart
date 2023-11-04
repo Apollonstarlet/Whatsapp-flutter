@@ -1,12 +1,12 @@
-import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Pages/CameraPage.dart';
-import 'package:chatapp/Pages/ChatPage.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
+import 'package:whatsapp/Pages/CameraPage.dart';
+import 'package:whatsapp/Pages/ChatPage.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  Homescreen({Key key, this.chatmodels, this.sourchat}) : super(key: key);
-  final List<ChatModel> chatmodels;
-  final ChatModel sourchat;
+  Homescreen({Key? key, this.chatmodels, this.sourchat}) : super(key: key);
+  final List<ChatModel>? chatmodels;
+  final ChatModel? sourchat;
 
   @override
   _HomescreenState createState() => _HomescreenState();
@@ -14,7 +14,7 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  TabController? _controller;
   @override
   void initState() {
     super.initState();

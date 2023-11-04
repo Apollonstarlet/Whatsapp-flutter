@@ -1,24 +1,24 @@
 import 'dart:math';
 
 import 'package:camera/camera.dart';
-import 'package:chatapp/Screens/CameraView.dart';
-import 'package:chatapp/Screens/VideoView.dart';
+import 'package:whatsapp/Screens/CameraView.dart';
+import 'package:whatsapp/Screens/VideoView.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-List<CameraDescription> cameras;
+List<CameraDescription>? cameras;
 
 class CameraScreen extends StatefulWidget {
-  CameraScreen({Key key}) : super(key: key);
+  CameraScreen({Key? key}) : super(key: key);
 
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
 
 class _CameraScreenState extends State<CameraScreen> {
-  CameraController _cameraController;
-  Future<void> cameraValue;
+  CameraController? _cameraController;
+  Future<void>? cameraValue;
   bool isRecoring = false;
   bool flash = false;
   bool iscamerafront = true;
@@ -27,14 +27,14 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
-    _cameraController = CameraController(cameras[0], ResolutionPreset.high);
-    cameraValue = _cameraController.initialize();
+    _cameraController = CameraController(cameras![0], ResolutionPreset.high);
+    cameraValue = _cameraController!.initialize();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _cameraController.dispose();
+    _cameraController!.dispose();
   }
 
   @override
@@ -49,7 +49,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      child: CameraPreview(_cameraController));
+                      child: CameraPreview(_cameraController!));
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -80,19 +80,19 @@ class _CameraScreenState extends State<CameraScreen> {
                             });
                             flash
                                 ? _cameraController
-                                    .setFlashMode(FlashMode.torch)
-                                : _cameraController.setFlashMode(FlashMode.off);
+                                    ?.setFlashMode(FlashMode.torch)
+                                : _cameraController?.setFlashMode(FlashMode.off);
                           }),
                       GestureDetector(
                         onLongPress: () async {
-                          await _cameraController.startVideoRecording();
+                          await _cameraController?.startVideoRecording();
                           setState(() {
                             isRecoring = true;
                           });
                         },
                         onLongPressUp: () async {
                           XFile videopath =
-                              await _cameraController.stopVideoRecording();
+                              await _cameraController!.stopVideoRecording();
                           setState(() {
                             isRecoring = false;
                           });
@@ -134,8 +134,8 @@ class _CameraScreenState extends State<CameraScreen> {
                             });
                             int cameraPos = iscamerafront ? 0 : 1;
                             _cameraController = CameraController(
-                                cameras[cameraPos], ResolutionPreset.high);
-                            cameraValue = _cameraController.initialize();
+                                cameras![cameraPos], ResolutionPreset.high);
+                            cameraValue = _cameraController!.initialize();
                           }),
                     ],
                   ),
@@ -159,7 +159,7 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 
   void takePhoto(BuildContext context) async {
-    XFile file = await _cameraController.takePicture();
+    XFile file = await _cameraController!.takePicture();
     Navigator.push(
         context,
         MaterialPageRoute(

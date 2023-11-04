@@ -1,18 +1,16 @@
-// import 'package:camera/camera.dart';
-// import 'package:chatapp/CustomUI/CameraUI.dart';
-import 'package:chatapp/CustomUI/OwnMessgaeCrad.dart';
-import 'package:chatapp/CustomUI/ReplyCard.dart';
-import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Model/MessageModel.dart';
-import 'package:emoji_picker/emoji_picker.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:whatsapp/CustomUI/OwnMessgaeCrad.dart';
+import 'package:whatsapp/CustomUI/ReplyCard.dart';
+import 'package:whatsapp/Model/ChatModel.dart';
+import 'package:whatsapp/Model/MessageModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class IndividualPage extends StatefulWidget {
-  IndividualPage({Key key, this.chatModel, this.sourchat}) : super(key: key);
-  final ChatModel chatModel;
-  final ChatModel sourchat;
+  IndividualPage({Key? key, this.chatModel, this.sourchat}) : super(key: key);
+  final ChatModel? chatModel;
+  final ChatModel? sourchat;
 
   @override
   _IndividualPageState createState() => _IndividualPageState();
@@ -25,7 +23,7 @@ class _IndividualPageState extends State<IndividualPage> {
   List<MessageModel> messages = [];
   TextEditingController _controller = TextEditingController();
   ScrollController _scrollController = ScrollController();
-  IO.Socket socket;
+  IO.Socket? socket;
   @override
   void initState() {
     super.initState();
@@ -47,27 +45,27 @@ class _IndividualPageState extends State<IndividualPage> {
       "transports": ["websocket"],
       "autoConnect": false,
     });
-    socket.connect();
-    socket.emit("signin", widget.sourchat.id);
-    socket.onConnect((data) {
+    socket?.connect();
+    socket?.emit("signin", widget.sourchat?.id);
+    socket?.onConnect((data) {
       print("Connected");
-      socket.on("message", (msg) {
+      socket?.on("message", (msg) {
         print(msg);
         setMessage("destination", msg["message"]);
         _scrollController.animateTo(_scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
     });
-    print(socket.connected);
+    print(socket?.connected);
   }
 
-  void sendMessage(String message, int sourceId, int targetId) {
-    setMessage("source", message);
-    socket.emit("message",
+  void sendMessage(String? message, int? sourceId, int? targetId) {
+    setMessage("source", message!);
+    socket?.emit("message",
         {"message": message, "sourceId": sourceId, "targetId": targetId});
   }
 
-  void setMessage(String type, String message) {
+  void setMessage(String? type, String? message) {
     MessageModel messageModel = MessageModel(
         type: type,
         message: message,
@@ -109,7 +107,7 @@ class _IndividualPageState extends State<IndividualPage> {
                     ),
                     CircleAvatar(
                       child: SvgPicture.asset(
-                        widget.chatModel.isGroup
+                        widget.chatModel!.isGroup
                             ? "assets/groups.svg"
                             : "assets/person.svg",
                         color: Colors.white,
@@ -131,7 +129,7 @@ class _IndividualPageState extends State<IndividualPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.chatModel.name,
+                        widget.chatModel!.name,
                         style: TextStyle(
                           fontSize: 18.5,
                           fontWeight: FontWeight.bold,
@@ -329,8 +327,8 @@ class _IndividualPageState extends State<IndividualPage> {
                                             curve: Curves.easeOut);
                                         sendMessage(
                                             _controller.text,
-                                            widget.sourchat.id,
-                                            widget.chatModel.id);
+                                            widget.sourchat?.id,
+                                            widget.chatModel?.id);
                                         _controller.clear();
                                         setState(() {
                                           sendButton = false;
@@ -448,12 +446,11 @@ class _IndividualPageState extends State<IndividualPage> {
 
   Widget emojiSelect() {
     return EmojiPicker(
-        rows: 4,
-        columns: 7,
         onEmojiSelected: (emoji, category) {
           print(emoji);
           setState(() {
-            _controller.text = _controller.text + emoji.emoji;
+            var emoji;
+            _controller.text = _controller.text + emoji?.emoji;
           });
         });
   }
